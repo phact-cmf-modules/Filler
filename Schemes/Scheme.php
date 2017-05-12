@@ -159,7 +159,7 @@ abstract class Scheme
     public function fill()
     {
         if ($this->dict) {
-            if (mb_strpos('.', $this->dict, null, 'UTF-8') === false) {
+            if (mb_strpos($this->dict, '.', null, 'UTF-8') === false) {
                 $this->dict = 'Modules.Filler.dict.' . $this->dict;
             }
             $path = Paths::file($this->dict, ['php']);

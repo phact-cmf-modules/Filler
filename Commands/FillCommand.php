@@ -17,10 +17,10 @@ namespace Modules\Filler\Commands;
 use Modules\Filler\Schemes\FlatScheme;
 
 use Modules\Filler\Schemes\TreeScheme;
-use Modules\Tree\Models\Tree;
 use Phact\Commands\Command;
 use Phact\Helpers\Configurator;
 use Phact\Helpers\Paths;
+use Phact\Orm\TreeModel;
 
 class FillCommand extends Command
 {
@@ -32,7 +32,7 @@ class FillCommand extends Command
             foreach ($data as $class => $config) {
                 $schemeName = isset($config['scheme']) ? $config['scheme'] : null;
                 if (!$schemeName) {
-                    $schemeName = is_a($class, Tree::class, true) ? 'tree' : 'flat';
+                    $schemeName = is_a($class, TreeModel::class, true) ? 'tree' : 'flat';
                 }
                 $schemeClass = $this->getScheme($schemeName);
                 if ($schemeClass) {
